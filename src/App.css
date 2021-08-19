@@ -1,5 +1,5 @@
 .App {
-  text-align: center;
+  text-align: justify;
 }
 
 .App-logo {
@@ -35,4 +35,15 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.trush-icon {
+  color: red !important;
+  padding-top: 5px;
+  padding-left: 5px;
+}
+
+.users {
+  width: 30px;
+  margin-right: 5px;
 }
