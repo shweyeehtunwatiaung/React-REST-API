@@ -8,7 +8,7 @@ const ContactList = (props) => {
   const deleteContactHandler = (id) => {
     props.getContactId(id)
   }
- 
+
   const contactsList = props.contacts.map(contact => {
     return (
       <ContactCard key={contact.id} contact={contact} clickHandler={deleteContactHandler} />
@@ -19,9 +19,18 @@ const ContactList = (props) => {
     <div className="container text-center">
       <div className="row">
         <div className="col-md-6 offset-md-3">
+
           <h2> Contact List</h2>
+
+          <div>
+            <input class="form-control mr-sm-2 my-3" type="search" placeholder="Search" />
+            {/* <i class="fa fa-search" aria-hidden="true"></i> */}
+          </div>
+
           {contactsList}
-            {/* <div onClick={hdandleGoTo}>OnClick</div> */}
+
+          {/* <div onClick={hdandleGoTo}>OnClick</div> */}
+
           <Link to="/add">
             <button className="btn btn-info">Add Contact</button>
           </Link>

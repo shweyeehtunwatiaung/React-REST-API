@@ -47,3 +47,12 @@
   width: 30px;
   margin-right: 5px;
 }
+.card-decoration{
+  display: flex;
+  justify-content: space-between;
+}
+.text-header {
+  text-align: left;
+  color: black;
+  text-decoration: none;
+}
