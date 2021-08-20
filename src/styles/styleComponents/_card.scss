@@ -1,0 +1,35 @@
+.card {
+  .card-body {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 10px;
+
+    .card-decoration {
+      display: flex;
+      align-items: flex-start;
+
+      img {
+        width: 45px;
+        margin-right: 10px;
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+
+      .contact-data {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        justify-content: flex-start;
+      }
+    }
+
+    .action {
+      max-width: 50px;
+    }
+  }
+}

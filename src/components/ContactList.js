@@ -1,9 +1,9 @@
 import React from 'react'
-import { Link, useHistory } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import ContactCard from './ContactCard'
+import { MdSearch } from 'react-icons/md'
 
 const ContactList = (props) => {
-  const history = useHistory()
 
   const deleteContactHandler = (id) => {
     props.getContactId(id)
@@ -22,16 +22,17 @@ const ContactList = (props) => {
 
           <h2> Contact List</h2>
 
-          <div>
-            <input class="form-control mr-sm-2 my-3" type="search" placeholder="Search" />
-            {/* <i class="fa fa-search" aria-hidden="true"></i> */}
+          <div className="contact-wrap">
+            <input className="form-control" type="search" placeholder="Search" />
+            <div className="icon">
+              <MdSearch />
+            </div>
           </div>
 
           {contactsList}
 
-          {/* <div onClick={hdandleGoTo}>OnClick</div> */}
-
           <Link to="/add">
+            
             <button className="btn btn-info">Add Contact</button>
           </Link>
         </div>

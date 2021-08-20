@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import uuid from 'uuid/dist/v1';
-import './App.css';
 import AddContact from './components/AddContact';
 import EditContact from './components/EditContact';
 import Header from './components/Header';
@@ -9,11 +8,12 @@ import ContactList from './components/ContactList';
 import ContactDetail from './components/ContactDetail';
 import AboutUs from './components/pages/AboutUs';
 import ContactUs from './components/pages/ContactUs';
-
 import api from './api/contacts'
 
 function App() {
   const [contacts, setContacts] = useState([])
+
+  // contacts state => 2,3
 
   //const LOCALSTORAGE_KEY = "ContactsList"
 
@@ -37,34 +37,34 @@ function App() {
   // Add new Contact Api
 
   const addContact = async (contact) => {
-    console.log(contact)
+   
     const request = {
       id: uuid(),
       ...contact
     }
     const response = await api.post("/contacts", request)
-    console.log(response)
+    
     setContacts([...contacts, response.data])
   }
 
-  const updateContactHandler = async (contact) =>{
+  const updateContactHandler = async (contact) => {
+    
     const response = await api.put(`/contacts/${contact.id}`, contact )
 
-    const { id, name, email } = response.data
+    const { id } = response.data
 
     setContacts(
       contacts.map((contact)=>{
-        // {...response.data } spread opeator
         return contact.id === id ? {...response.data } : contact
       })
     )
-
   }
 
   // Delete a Contact Api
-  const deleteContact = async (id) => {
+  const deleteContact = async (id) => {    
     await api.delete(`/contacts/${id}`)
-    const newContactsList = contacts.filter((contact) => {
+
+    const newContactsList = contacts.filter((contact) => { // return []
       return contact.id !== id
     })
     setContacts(newContactsList)
