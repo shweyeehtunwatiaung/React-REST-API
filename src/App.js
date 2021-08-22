@@ -12,8 +12,8 @@ import api from './api/contacts'
 
 function App() {
   const [contacts, setContacts] = useState([])
-
-  // contacts state => 2,3
+  const [searchTerm, setSearchTerm] = useState("")
+  const [searchResults, setSearchResults] = useState([])
 
   //const LOCALSTORAGE_KEY = "ContactsList"
 
@@ -37,31 +37,31 @@ function App() {
   // Add new Contact Api
 
   const addContact = async (contact) => {
-   
+
     const request = {
       id: uuid(),
       ...contact
     }
     const response = await api.post("/contacts", request)
-    
+
     setContacts([...contacts, response.data])
   }
 
   const updateContactHandler = async (contact) => {
-    
-    const response = await api.put(`/contacts/${contact.id}`, contact )
+
+    const response = await api.put(`/contacts/${contact.id}`, contact)
 
     const { id } = response.data
 
     setContacts(
-      contacts.map((contact)=>{
-        return contact.id === id ? {...response.data } : contact
+      contacts.map((contact) => {
+        return contact.id === id ? { ...response.data } : contact
       })
     )
   }
 
   // Delete a Contact Api
-  const deleteContact = async (id) => {    
+  const deleteContact = async (id) => {
     await api.delete(`/contacts/${id}`)
 
     const newContactsList = contacts.filter((contact) => { // return []
@@ -74,13 +74,31 @@ function App() {
     // localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(contacts))
   }, [contacts])
 
+  const searchHandler = (searchTerm) => {
+
+    setSearchTerm(searchTerm)
+
+    if(searchTerm !== "") {
+      const newContactsList = contacts.filter((contact) => {
+        return Object.values(contact).join(" ").toLowerCase() .includes(searchTerm.toLowerCase())
+      })
+      setSearchResults(newContactsList)
+    }else{
+      setSearchResults(contacts)
+    }
+  }
   return (
     <div className="App">
       <Router>
         <Header />
         <Switch>
           <Route path="/" exact
-            render={(props) => (<ContactList {...props} contacts={contacts} getContactId={deleteContact} />)} />
+            render={(props) => (<ContactList {...props}
+              contacts={searchTerm < 1 ? contacts : searchResults}
+              getContactId={deleteContact}
+              term={searchTerm}
+              searchKeyword={searchHandler}
+            />)} />
 
           <Route path="/add"
             render={(props) => (<AddContact {...props} addContact={addContact} />)} />
