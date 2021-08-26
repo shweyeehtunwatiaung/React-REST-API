@@ -15,10 +15,6 @@ function App() {
   const [searchTerm, setSearchTerm] = useState("")
   const [searchResults, setSearchResults] = useState([])
 
-  //const LOCALSTORAGE_KEY = "ContactsList"
-
-  //Retrieve Contacts Api
-
   const retrieveContacts = async () => {
     const response = await api.get("/contacts")
     return response.data
@@ -75,13 +71,17 @@ function App() {
   }, [contacts])
 
   const searchHandler = (searchTerm) => {
-
     setSearchTerm(searchTerm)
+    console.log('keyword >>>', searchTerm)
 
     if(searchTerm !== "") {
       const newContactsList = contacts.filter((contact) => {
-        return Object.values(contact).join(" ").toLowerCase() .includes(searchTerm.toLowerCase())
+        console.log('sarch with keyword>>>', contact)
+        console.log(Object.values(contact))
+        return Object.values(contact).join(" ").toLowerCase().includes(searchTerm.toLowerCase())
+        //
       })
+
       setSearchResults(newContactsList)
     }else{
       setSearchResults(contacts)

@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import user from '../images/logo192.png'
 import { MdDelete, MdEdit } from 'react-icons/md'
+
 const ContactCard = (props) => {
 
   const { id, name, email } = props.contact
