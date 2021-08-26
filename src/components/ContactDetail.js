@@ -4,6 +4,7 @@ import user from '../images/logo192.png'
 const ContactDetail = (props) => {
   // console.log(props)
   const { name, email } = props.location.state.contact
+  
   return (
     <div className="container mt-3">
       <div className="row">

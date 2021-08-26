@@ -21,7 +21,6 @@ function App() {
   }
 
   useEffect(() => {
-
     const getAllContacts = async () => {
       const allContacts = await retrieveContacts()
       if (allContacts) setContacts(allContacts)
@@ -75,18 +74,15 @@ function App() {
     console.log('keyword >>>', searchTerm)
 
     if(searchTerm !== "") {
-      const newContactsList = contacts.filter((contact) => {
-        console.log('sarch with keyword>>>', contact)
-        console.log(Object.values(contact))
+      const newContactsList = contacts.filter((contact) => { 
         return Object.values(contact).join(" ").toLowerCase().includes(searchTerm.toLowerCase())
-        //
       })
-
       setSearchResults(newContactsList)
     }else{
       setSearchResults(contacts)
     }
   }
+  
   return (
     <div className="App">
       <Router>

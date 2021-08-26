@@ -9,7 +9,6 @@ const ContactCard = (props) => {
 
   return (
     <div className="card mb-3">
-
       <div className="card-body card-decoration" >
         <div className="card-decoration" >
           <img className="users" src={user} alt="User" />
@@ -24,8 +23,8 @@ const ContactCard = (props) => {
         <div className="action">
           <Link to={{ pathname: `/edit/`, state: { contact: props.contact } }}>
             <MdEdit style={{ width: '24', height: '24', color: "blue", paddingTop: "5px", paddingLeft: "5px" }} />
-
           </Link>
+          
           <MdDelete style={{ width: '24', height: '24', color: "red", paddingTop: "5px", paddingLeft: "5px" }}
             onClick={() => props.clickHandler(id)} />
         </div>
